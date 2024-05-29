@@ -1,4 +1,4 @@
-name: Update Metrics
+name: Metrics
 
 on:
   # 定时触发，每天运行一次
@@ -24,7 +24,7 @@ jobs:
         uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
-          filename: metrics.svg
+          filename: ./metrics.svg
           base: "activity,community,repositories,metadata"
           plugin_habits: yes
           plugin_habits_charts: yes
@@ -38,9 +38,9 @@ jobs:
           plugin_commits: yes
           plugin_commits_charts: yes
 
-      - name: Update README with metrics
+      - name: Copy Metrics
         run: |
-          cat metrics.svg >> README.md
+          cat ./metrics.svg >> README.md
 
       - name: Commit and push metrics
         uses: EndBug/add-and-commit@v7
